@@ -1,0 +1,452 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgb(9, 40, 102);
+            color: whitesmoke;
+            margin: 0px;
+            height: 120px
+        }
+
+        .chat {
+            display: inline-block;
+            border: 2px solid white;
+            padding: 10px;
+            box-shadow: 3px 4px 4px grey;
+            background-color: rgb(75, 128, 225);
+            color: white;
+            border-radius: 22px;
+            margin: 10px;
+            width: fit-content;
+            text-align: justify;
+            font-size: 25px;
+            position: static;
+            top: 100%;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .loginDiv {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 700px;
+            height: 600px;
+            margin: 10px auto;
+            color: white;
+            flex-direction: column;
+        }
+
+        .input {
+            margin: 5px;
+            width: 400px;
+            text-align: center;
+            margin: 5px;
+        }
+
+            .input input {
+                padding: 10px;
+                border-radius: 5px;
+                width: 350px;
+            }
+
+        .loginDiv button {
+            padding: 10px;
+            font-size: 20px;
+            background-color: coral;
+            color: white;
+            border-radius: 22px;
+            margin: 10px;
+        }
+
+            .loginDiv button:hover {
+                background-color: white;
+                color: coral;
+            }
+
+        .inputDiv {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 550px;
+            height: 450px;
+            border: 3px solid rgb(5, 30, 76);
+            background-color: rgb(12, 51, 123);
+            border-radius: 30px;
+            box-shadow: 3px 4px 4px grey;
+            justify-content: center;
+        }
+
+        .header p {
+            font-size: 50px;
+            margin: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header img {
+            border-radius: 22px;
+            width: 200px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .mini-header {
+            display: flex;
+            flex-direction: row;
+        }
+
+            .mini-header button {
+                background-color: white;
+                color: rgb(23, 72, 164);
+                border: 3px solid cornflowerblue;
+                padding: 15px;
+                margin: 10px;
+                border-radius: 22px;
+            }
+
+                .mini-header button:hover {
+                    color: white;
+                    background-color: rgb(15, 45, 103)
+                }
+
+        .home-div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 600px;
+            margin: 10px;
+        }
+
+        .home-divimg {
+            width: 700px;
+            height: 500px;
+        }
+
+        .Hello {
+            box-shadow: 3px 3px 3px gray;
+            margin: 10px auto;
+            padding: 5px;
+            border: 2px solid gray;
+            border-radius: 40px;
+            width: 600px;
+            line-height: 60px;
+            height: 80px;
+        }
+        .userText {
+            color: white;
+            font-family: monospace;
+            font-size: 17px;
+            text-align: right !important;
+            line-height: 30px;
+            margin: 5px;
+        }
+
+            .Hello:hover {
+                background-color: rgb(205, 222, 236);
+                color: gray;
+            }
+
+            .Hello p {
+                text-align: center;
+                font-size: 30px;
+                color: cornflowerblue;
+                font-weight: bolder;
+                padding: 10px;
+                margin: 0px;
+                text-shadow: 2px 2px 2px gray;
+            }
+
+        #startChat {
+            background-color: black;
+            color: white;
+            padding: 30px;
+            margin: 30px;
+            border-radius: 22px;
+            font-size: 40px;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .chatHeader {
+            background-color: cornflowerblue;
+            border: 2px solid white;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border: 0px;
+            border-radius: 12px 12px 0px 0px;
+            color: white;
+            font-size: 25px;
+            font-weight: bolder;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+            .chatHeader span {
+                margin: 10px
+            }
+        .userText span {
+            background-color: #009688;
+            padding: 10px;
+            border-radius: 2px;
+        }
+        .botText {
+            color: white;
+            font-family: monospace;
+            font-size: 17px;
+            text-align: left;
+            line-height: 30px;
+            margin: 5px;
+        }
+
+            .botText span {
+                background-color: #ef5350;
+                padding: 10px;
+                border-radius: 2px;
+            }
+
+        .displayChats {
+            display: flex;
+            flex-direction: column;
+            align-content: space-between;
+            background-color: rgb(224, 219, 219);
+            height: 700px;
+            width: 700px;
+            overflow-y: scroll;
+            justify-content: flex-end;
+        }
+
+        .chatSection {
+            display: flex;
+            flex-direction: column;
+            height: 800px;
+            width: 700px;
+            box-shadow: 5px 5px 5px gray;
+        }
+
+        #startChat:hover {
+            background-color: white;
+            border: 3px solid black;
+            color: black;
+        }
+
+        .space {
+            background-color: aliceblue;
+            width: 50%;
+            
+        }
+
+        .inputChat {
+            background-color: white;
+            font-size: 25px;
+            width: 695px;
+            margin: 0px;
+            height: 50px;
+            border: 3px solid cornflowerblue;
+            border-radius: 5px;
+        }
+
+        .chatimg {
+            width: 80px;
+            height: 60px;
+            border-radius: 40px;
+        }
+
+        @keyframes typingAnimation {
+            0% {
+                width: 0;
+                opacity: 0;
+            }
+
+            100% {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+
+        #intdro {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typingAnimation 2s steps(30, end) forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <img src="https://www.shutterstock.com/image-vector/chat-bot-vector-logo-design-260nw-2381705799.jpg" />
+            <p>PshycRobo</p>
+        </div>
+        <div class="mini-header">
+            <button class="login">Join Us</button>
+        </div>
+    </header>
+    <div class="Hello" id="hello">
+        <p style="text-align: center;" id="intdro">Hey Friend! I am Your PshycRobo</p>
+    </div>
+    <div class="parent-home" id="parent-home">
+        <div id="loginDiv" class="hide">
+            <p class="display" style="font-size: 30px ;color:coral;font-weight: bolder;"></p>
+            <div class="inputDiv">
+                <p style="font-size: 30px; font-weight: bolder;">Enter Your Details Here</p>
+                <div class="input">
+                    <p style="margin: 5px;">Username</p>
+                    <input type="text" placeholder="Username" class="username" />
+                </div>
+                <div class="input">
+                    <p style="margin: 5px;">Password</p>
+                    <input type="password" placeholder="password" class="password" />
+                </div>
+                <button type="submit" class="submit">Submit</button>
+            </div>
+
+        </div>
+        <div class="home-div" id="homeDiv">
+            <img src="https://thumbs.dreamstime.com/b/healthcare-chatbot-technology-tiny-woman-robot-phone-screen-communicate-online-vector-illustration-cartoon-laptop-292300246.jpg" class="home-divimg" />
+            <button id="startChat"><span>Start Chatting</span></button>
+            <div class="hide" id="chatSection">
+                <div class="chatHeader">
+
+                    <span> <img class="chatimg" src="https://static.vecteezy.com/system/resources/previews/014/477/430/original/robot-chatbot-icon-sign-flat-style-design-illustration-set-isolated-on-white-background-ai-related-icon-for-graphic-and-web-design-internet-concept-symbol-for-website-button-or-mobile-app-vector.jpg" /></span>
+                    <span>Chat with me</span>
+                </div>
+                <form id="form">
+                    <div class="displayChats">
+
+                    </div>
+                    <div id="userInput" style="display:flex;flex-direction:row">
+                        <input type="text" placeholder="Enter Your Message" class="inputChat" id="chatInput" name="msg" />
+                        <button type="submit" id="send" style="margin-top: 8px; padding: 8px; background-color: #ff9800; color: white; border: none; cursor: pointer;">Send</button>
+                    </div>
+                </form>
+                
+             </div>
+        </div>
+        </div>
+
+    <script>
+    let homeDiv = document.getElementsByClassName("home-div");
+        let parentDiv = document.getElementsByClassName("parent-home");
+        let helloPara = document.getElementById("hello");
+        let startButton = document.getElementById("startChat");
+        let chatSection = document.getElementById("chatSection");
+        let parentDivId = document.getElementById("parent-home");
+        let inputChat = document.getElementsByClassName("inputChat");
+        let login = document.getElementById("loginDiv")
+        let home = document.getElementById("homeDiv");
+        let loginButton = document.getElementsByClassName("login")[0];
+        console.log(loginButton)
+        let Submit = document.getElementsByClassName("submit")[0];
+        let username = document.getElementsByClassName('username');
+        let password = document.getElementsByClassName("password");
+        console.log(username)
+        let intro = document.getElementById("intdro");
+        let displayChats = document.getElementsByClassName("displayChats");
+        let details = document.getElementsByClassName("display");
+        let loggedIn = false
+        let form = document.getElementById("form")
+        console.log(form)
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            var rawText = document.getElementById("chatInput").value;
+            console.log(rawText)
+            var userHtml = '<p class="chat"><span>' + rawText + "</span></p>";
+            document.getElementById("chatInput").value = ""; // Clear input field
+
+            var displayChats = document.querySelector(".displayChats");
+            displayChats.insertAdjacentHTML("beforeend", userHtml); // Append user's message
+
+            document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+
+            // Create and send AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/get");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var botHtml = '<p class="botText"><span>' + xhr.responseText + "</span></p>";
+                    displayChats.insertAdjacentHTML("beforeend", botHtml); // Append bot's response
+                    document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+                }
+            };
+            xhr.send(JSON.stringify({ msg: rawText }));
+        });
+
+
+
+        function loginfn() {
+            console.log("inside login")
+            home.classList.remove("home-div");
+            home.classList.add("hide")
+            login.classList.remove("hide");
+            login.classList.add("loginDiv");
+
+        }
+
+        Submit.addEventListener("click", () => {
+            let userName = username[0].value.toUpperCase();
+            let passWord = password[0].value;
+            details[0].innerText = `Hello ${userName}, Welcome`;
+            console.log(details);
+            loggedIn = true;
+
+            setTimeout(() => {
+                home.classList.add("home-div");
+                home.classList.remove("hide")
+                login.classList.add("hide");
+                login.classList.remove("loginDiv")
+
+            }, 1000)
+            home.classList.remove("home-div");
+            home.classList.add("hide")
+            login.classList.remove("hide");
+            login.classList.add("loginDiv")
+
+        })
+        loginButton.addEventListener("click", loginfn)
+        startButton.addEventListener("click", () => {
+            if (loggedIn == false) {
+                loginfn()
+            }
+            else {
+                startButton.classList.add("hide");
+                newDiv = document.createElement("div");
+                newDiv.setAttribute("class", 'chatDiv');
+                homeDiv[0].appendChild(newDiv);
+                chatSection.classList.remove("hide");
+                chatSection.classList.add('chatSection');
+                helloPara.classList.remove('Hello');
+                helloPara.classList.add("hide");
+                homeDiv[0].style.height = '800px';
+                inputChat[0].focus()
+            }
+
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>
